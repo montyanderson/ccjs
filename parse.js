@@ -15,18 +15,17 @@ module.exports = tokens => {
 
 		const body = [];
 
-		console.log(tokens);
-
-		for(let i = 0; i < tokens; i++) {
-			/*
+		for(let i = 0; i < tokens.length; i++) {
 			if(tokens[i].type === 'open-brace') {
-				const indexOfClose = i - tokens.slice(0)
+				const indexOfClose = tokens.length - tokens.slice(0)
 					.reverse()
 					.findIndex(token => token.type === 'close-brace');
 
 				body.push(parseStatement(tokens.slice(i + 1, indexOfClose - 1)));
+
+				i = indexOfClose;
+				continue;
 			}
-			*/
 
 			if(tokens[i].type === 'return') {
 				body.push({
@@ -35,6 +34,7 @@ module.exports = tokens => {
 				});
 
 				i++;
+				continue;
 			}
 		}
 
